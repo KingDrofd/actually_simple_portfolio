@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class Menu extends StatefulWidget {
   const Menu({super.key});
@@ -38,19 +39,25 @@ class _MenuState extends State<Menu> {
   }
 
   BoxDecoration _buildBoxDeco() {
-    return BoxDecoration(
-      borderRadius: const BorderRadius.only(
+    return const BoxDecoration(
+      borderRadius: BorderRadius.only(
         topLeft: Radius.circular(10),
         topRight: Radius.circular(10),
       ),
       color: Colors.white,
       boxShadow: <BoxShadow>[
         BoxShadow(
-          offset: const Offset(0, 50),
-          spreadRadius: -100,
-          color: const Color.fromARGB(255, 6, 0, 177).withOpacity(0.15),
+          offset: const Offset(0, 40),
+          spreadRadius: -80,
+          color: const Color.fromARGB(100, 6, 0, 177),
           blurRadius: 50,
         ),
+        // BoxShadow(
+        //   offset: const Offset(0, 40),
+        //   spreadRadius: -80,
+        //   color: Color.fromARGB(44, 0, 0, 0),
+        //   blurRadius: 50,
+        // ),
       ],
     );
   }
@@ -80,9 +87,11 @@ class _MenuState extends State<Menu> {
         children: [
           Text(
             menuItems[index],
-            style: const TextStyle(
+            style: TextStyle(
+              fontFamily: "Spotify",
+              letterSpacing: -1.5,
               fontSize: 20,
-              color: Colors.blueGrey,
+              color: Color.fromRGBO(70, 70, 100, 1),
             ),
           ),
           AnimatedPositioned(

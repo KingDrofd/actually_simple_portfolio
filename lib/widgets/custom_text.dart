@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class CustomText extends StatelessWidget {
   const CustomText({
@@ -27,9 +28,10 @@ class CustomText extends StatelessWidget {
         // Stroked text as border.
         Text(
           text,
-          style: TextStyle(
+          style: GoogleFonts.ubuntu(
             shadows: shadow,
             fontSize: fontSize,
+            fontWeight: FontWeight.bold,
             foreground: Paint()
               ..style = paintingStyle
               ..strokeWidth = strokeWidth
@@ -39,9 +41,11 @@ class CustomText extends StatelessWidget {
         // Solid text as fill.
         Text(
           text,
-          style: TextStyle(
+          style: GoogleFonts.ubuntu(
             fontSize: fontSize,
+            fontWeight: FontWeight.bold,
             color: textColor,
+            shadows: shadow,
           ),
         ),
       ],

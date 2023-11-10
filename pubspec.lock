@@ -296,6 +296,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "5.4.0"
+  pixel_snap:
+    dependency: "direct main"
+    description:
+      name: pixel_snap
+      sha256: "5de3662b926c9bc189578cf90f9d5b350ee61bc8e20e8a91fa1dfdd26c9f5ece"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.1.2"
   platform:
     dependency: transitive
     description:
@@ -349,6 +357,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.10.0"
+  space_fixer:
+    dependency: "direct main"
+    description:
+      name: space_fixer
+      sha256: "4f22605e74603e3a5179cf4b576b221a91f625acce0493cf1589f9df92cc2bd3"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.1.1"
   stack_trace:
     dependency: transitive
     description:

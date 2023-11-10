@@ -19,6 +19,7 @@ class CustomTextButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextButton(
       style: TextButton.styleFrom(
+        foregroundColor: Color.fromARGB(255, 0, 160, 160),
         backgroundColor: const Color.fromARGB(255, 232, 240, 249),
         padding: const EdgeInsets.symmetric(
           vertical: 20,

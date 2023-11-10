@@ -18,6 +18,7 @@ class CustomOutlinedButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return OutlinedButton(
       style: OutlinedButton.styleFrom(
+        foregroundColor: Colors.grey,
         backgroundColor: const Color.fromARGB(255, 242, 240, 249),
         padding: const EdgeInsets.symmetric(
           vertical: 20,

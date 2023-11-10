@@ -18,7 +18,7 @@ class _TopSectionState extends State<TopSection> {
     return Container(
       width: screenSize.width,
       height: 700,
-      decoration: _buildBackground(),
+      //decoration: _buildBackground(),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
