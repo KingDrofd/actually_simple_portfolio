@@ -2,14 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class CustomTextButton extends StatelessWidget {
-  const CustomTextButton({
-    Key? key,
-    this.textStyle,
-    required this.imageSrc,
-    required this.text,
-    required this.press,
-  }) : super(key: key);
+class CustomOutlinedButton extends StatelessWidget {
+  const CustomOutlinedButton(
+      {super.key,
+      required this.imageSrc,
+      required this.text,
+      this.press,
+      this.textStyle});
 
   final String imageSrc, text;
   final Function()? press;
@@ -17,9 +16,9 @@ class CustomTextButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextButton(
-      style: TextButton.styleFrom(
-        backgroundColor: const Color.fromARGB(255, 232, 240, 249),
+    return OutlinedButton(
+      style: OutlinedButton.styleFrom(
+        backgroundColor: const Color.fromARGB(255, 242, 240, 249),
         padding: const EdgeInsets.symmetric(
           vertical: 20,
           horizontal: 20 * 2.5,
