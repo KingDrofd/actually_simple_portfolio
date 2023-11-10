@@ -37,6 +37,7 @@ class CustomContainer extends StatelessWidget {
       child: BackdropFilter(
         filter: ImageFilter.blur(sigmaX: blur, sigmaY: blur),
         child: Container(
+          padding: EdgeInsets.symmetric(horizontal: 40),
           width: width,
           height: height,
           decoration: BoxDecoration(
