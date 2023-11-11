@@ -1,3 +1,4 @@
+import 'package:actually_simple_portfolio/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -17,6 +18,11 @@ class CustomTextButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if ((MediaQuery.sizeOf(context).width) < 700) {
+      isPhone = true;
+    } else {
+      isPhone = false;
+    }
     return TextButton(
       style: TextButton.styleFrom(
         foregroundColor: Color.fromARGB(255, 0, 160, 160),
@@ -36,7 +42,7 @@ class CustomTextButton extends StatelessWidget {
         children: [
           Image.asset(
             imageSrc,
-            height: 40,
+            height: isPhone ? 35 : 40,
           ),
           const Gap(20),
           Text(
@@ -46,7 +52,7 @@ class CustomTextButton extends StatelessWidget {
                   letterSpacing: -0.5,
                   fontWeight: FontWeight.bold,
                   color: Colors.black,
-                  fontSize: 22,
+                  fontSize: isPhone ? 18 : 22,
                 ),
           ),
         ],

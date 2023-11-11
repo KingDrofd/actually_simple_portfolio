@@ -12,13 +12,17 @@ class TopSection extends StatefulWidget {
 }
 
 class _TopSectionState extends State<TopSection> {
+  bool isDesktop(BuildContext context) =>
+      MediaQuery.of(context).size.width >= 860;
+
+  bool isMobile(BuildContext context) =>
+      MediaQuery.of(context).size.width < 600;
   @override
   Widget build(BuildContext context) {
-    final screenSize = MediaQuery.of(context).size;
     return Container(
-      width: screenSize.width,
+      padding: const EdgeInsets.only(left: 12, right: 12),
+      width: 1100,
       height: 700,
-      //decoration: _buildBackground(),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -28,32 +32,30 @@ class _TopSectionState extends State<TopSection> {
           const Gap(25),
           const Introductin(),
           const Gap(50),
-          const Menu(),
+          if (isDesktop(context)) const Menu(),
         ],
       ),
     );
   }
 
-  BoxDecoration _buildBackground() {
-    return const BoxDecoration(
-      image: DecorationImage(
-        colorFilter: ColorFilter.mode(
-          Color.fromARGB(210, 236, 232, 249),
-          BlendMode.color,
-        ),
-        fit: BoxFit.cover,
-        image: AssetImage(
-          "assets/bg.png",
-        ),
-      ),
-    );
-  }
+  // BoxDecoration _buildBackground() {
+  //   return const BoxDecoration(
+  //     image: DecorationImage(
+  //       colorFilter: ColorFilter.mode(
+  //         Color.fromARGB(210, 236, 232, 249),
+  //         BlendMode.color,
+  //       ),
+  //       fit: BoxFit.cover,
+  //       image: AssetImage(
+  //         "assets/bg.png",
+  //       ),
+  //     ),
+  //   );
+  // }
 
-  Padding _buildLogo() {
-    return Padding(
-      padding: const EdgeInsets.only(
-        right: 1000,
-      ),
+  Widget _buildLogo() {
+    return Align(
+      alignment: Alignment.centerLeft,
       child: LottieBuilder.asset(
         "assets/logo.json",
         width: 100,

@@ -1,3 +1,4 @@
+import 'package:actually_simple_portfolio/constants.dart';
 import 'package:actually_simple_portfolio/widgets/custom_offering_card.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
@@ -8,28 +9,37 @@ class Offerings extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double currentSize = MediaQuery.sizeOf(context).width;
+
+    if ((MediaQuery.sizeOf(context).width) < 700) {
+      isPhone = true;
+    } else {
+      isPhone = false;
+    }
     return Container(
-      width: 1100,
+      padding: EdgeInsets.only(left: 12, right: 12),
+      width: isPhone ? 550 : 1100,
       constraints: const BoxConstraints(maxWidth: 1100),
-      height: 600,
+      height: isPhone ? 720 : 1100,
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Row(
+            mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Column(
                 children: [
                   Container(
                     width: 10,
-                    height: 20,
+                    height: 30,
                     color: Colors.red,
                   ),
                   Container(
                     color: Colors.black,
                     width: 10,
-                    height: 60,
+                    height: 80,
                   )
                 ],
               ),
@@ -44,31 +54,39 @@ class Offerings extends StatelessWidget {
                   ),
                   Text(
                     "Service Offerings",
-                    style: GoogleFonts.oswald(fontSize: 36),
+                    style: GoogleFonts.oswald(fontSize: 56),
                   ),
                 ],
               ),
             ],
           ),
-          const Row(
-            crossAxisAlignment: CrossAxisAlignment.end,
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              CustomOfferingCard(
-                text: "Web Design",
-              ),
-              CustomOfferingCard(
-                text: "UI Design",
-              ),
-              CustomOfferingCard(
-                text: "Interaction Design",
-              ),
-              CustomOfferingCard(
-                text: "Backend",
-              )
-            ],
+          Gap(50),
+          Container(
+            alignment: Alignment.center,
+            width: isPhone ? 550 : 1100,
+            height: isPhone ? 550 : 260,
+            child: GridView.count(
+              crossAxisSpacing: 20,
+              mainAxisSpacing: 20,
+              scrollDirection: isPhone ? Axis.vertical : Axis.horizontal,
+              crossAxisCount: isPhone ? 2 : 1,
+              children: const [
+                CustomOfferingCard(
+                  text: "Web Design",
+                  offsetRight: 4,
+                ),
+                CustomOfferingCard(
+                  text: "UI Design",
+                ),
+                CustomOfferingCard(
+                  text: "Interaction Design",
+                ),
+                CustomOfferingCard(
+                  text: "Backend",
+                ),
+              ],
+            ),
           ),
-          const Gap(20)
         ],
       ),
     );

@@ -1,3 +1,4 @@
+import 'package:actually_simple_portfolio/constants.dart';
 import 'package:actually_simple_portfolio/sections/aboutSection/about_buttons.dart';
 import 'package:actually_simple_portfolio/sections/aboutSection/about_section.dart';
 import 'package:actually_simple_portfolio/sections/offeringsSection/offerings.dart';
@@ -40,19 +41,44 @@ class _MainPageState extends State<MainPage> {
 
   @override
   Widget build(BuildContext context) {
+    GlobalKey<ScaffoldState> _globalKey = GlobalKey<ScaffoldState>();
     return Scaffold(
-      body: WebSmoothScroll(
-        scrollOffset: 100,
-        controller: _scrollController,
-        animationDuration: 500,
-        curve: Curves.decelerate,
-        child: SingleChildScrollView(
-          controller: _scrollController,
-          physics: const NeverScrollableScrollPhysics(),
-          child: const Center(
-            child: Offerings(),
+      drawer: Drawer(
+          child: ListView(
+        children: [],
+      )),
+      body: Stack(
+        alignment: Alignment.topCenter,
+        children: [
+          WebSmoothScroll(
+            scrollOffset: 100,
+            controller: _scrollController,
+            animationDuration: 500,
+            curve: Curves.decelerate,
+            child: SingleChildScrollView(
+              controller: _scrollController,
+              physics: const NeverScrollableScrollPhysics(),
+              child: Stack(
+                alignment: Alignment.topCenter,
+                children: [
+                  BuildBackgrounds(),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      TopSection(),
+                      Gap(isPhone ? 20 : 100),
+                      AboutSection(),
+                      Gap(40),
+                      AboutButtons(),
+                      Gap(isPhone ? 150 : 200),
+                      Offerings(),
+                    ],
+                  ),
+                ],
+              ),
+            ),
           ),
-        ),
+        ],
       ),
     );
   }

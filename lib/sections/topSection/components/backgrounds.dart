@@ -27,7 +27,7 @@ class BuildBackgrounds extends StatelessWidget {
         ),
         Container(
           width: double.maxFinite,
-          height: 1400,
+          height: 2000,
           color: Colors.white,
         ),
         Container(

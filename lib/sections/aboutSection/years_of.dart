@@ -1,6 +1,9 @@
+import 'package:actually_simple_portfolio/constants.dart';
 import 'package:actually_simple_portfolio/widgets/custom_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_lorem/flutter_lorem.dart';
 import 'package:gap/gap.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class YearsOfExperience extends StatelessWidget {
   const YearsOfExperience({
@@ -9,35 +12,63 @@ class YearsOfExperience extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      alignment: Alignment.center,
+    if ((MediaQuery.sizeOf(context).width) < 700) {
+      isPhone = true;
+    } else {
+      isPhone = false;
+    }
+    return Flex(
+      direction: isPhone ? Axis.vertical : Axis.horizontal,
       children: [
-        Container(
-          width: 300,
-          height: 300,
-          decoration: BoxDecoration(
-            color: const Color.fromRGBO(247, 232, 255, 1),
-            borderRadius: BorderRadius.circular(20),
-          ),
-        ),
-        Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(20),
-            color: const Color.fromRGBO(237, 210, 252, 1),
-            boxShadow: const <BoxShadow>[
-              BoxShadow(
-                blurRadius: 10,
-                spreadRadius: -1.3,
-                offset: Offset(0, 1.8),
-                color: Color.fromRGBO(219, 154, 219, 1),
+        Stack(
+          alignment: Alignment.center,
+          children: [
+            Container(
+              width: 250,
+              height: 250,
+              decoration: BoxDecoration(
+                color: const Color.fromRGBO(247, 232, 255, 1),
+                borderRadius: BorderRadius.circular(20),
               ),
-            ],
-          ),
-          width: 250,
-          height: 250,
+            ),
+            Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20),
+                color: const Color.fromRGBO(237, 210, 252, 1),
+                boxShadow: const <BoxShadow>[
+                  BoxShadow(
+                    blurRadius: 10,
+                    spreadRadius: -1.3,
+                    offset: Offset(0, 1.8),
+                    color: Color.fromRGBO(219, 154, 219, 1),
+                  ),
+                ],
+              ),
+              width: 200,
+              height: 200,
+            ),
+            _buildYearsOfText()
+          ],
         ),
-        _buildYearsOfText()
+        Gap(isPhone ? 10 : 45),
+        _yearsOfStory()
       ],
+    );
+  }
+
+  Container _yearsOfStory() {
+    return Container(
+      width: isPhone ? 400 : 240,
+      height: 240,
+      alignment: Alignment.center,
+      child: SelectableText(
+        lorem(paragraphs: 1, words: 50),
+        style: GoogleFonts.ubuntu(
+          letterSpacing: 0.1,
+          fontSize: 17,
+          color: Colors.black,
+        ),
+      ),
     );
   }
 

@@ -1,3 +1,4 @@
+import 'package:actually_simple_portfolio/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -21,37 +22,90 @@ class CustomOfferingCard extends StatefulWidget {
   State<CustomOfferingCard> createState() => _CustomOfferingCardState();
 }
 
-class _CustomOfferingCardState extends State<CustomOfferingCard> {
+class _CustomOfferingCardState extends State<CustomOfferingCard>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _animationController;
   bool _isHovered = false;
+  late Animation<double> animation;
+  late Animation<double> shadeAnimation;
+
+  @override
+  void initState() {
+    super.initState();
+    _animationController = AnimationController(
+      vsync: this,
+      duration: Duration(milliseconds: 300),
+    );
+    animation = Tween<double>(begin: 0, end: .3)
+        .chain(
+          CurveTween(curve: Curves.easeInOutCubic),
+        )
+        .animate(_animationController)
+      ..addListener(() {
+        setState(() {});
+      });
+    shadeAnimation = Tween<double>(begin: 0, end: 1)
+        .chain(
+          CurveTween(curve: Curves.easeIn),
+        )
+        .animate(_animationController)
+      ..addListener(() {
+        setState(() {});
+      });
+  }
+
+  @override
+  void dispose() {
+    _animationController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
+    if ((MediaQuery.sizeOf(context).width) < 700) {
+      isPhone = true;
+    } else {
+      isPhone = false;
+    }
     return MouseRegion(
       cursor: SystemMouseCursors.click,
       onEnter: (event) {
         setState(() {
           _isHovered = true;
+          _animationController.forward();
         });
       },
       onExit: (event) {
         setState(() {
           _isHovered = false;
+          _animationController.reverse();
         });
       },
-      child: Container(
+      child: Stack(
         alignment: Alignment.center,
-        decoration: _buildOfferingCardDeco(),
-        width: 200,
-        height: 200,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            const Gap(20),
-            _buildCardImage(),
-            const Gap(10),
-            _buildCardText(),
-            const Gap(20)
-          ],
-        ),
+        children: [
+          AnimatedPositioned(
+            duration: Duration(milliseconds: 300),
+            bottom: _isHovered ? 5 : 0,
+            child: Container(
+              alignment: Alignment.center,
+              decoration: _buildOfferingCardDeco(),
+              width: isPhone ? 220 : 255,
+              height: isPhone ? 220 : 255,
+              constraints: BoxConstraints(maxWidth: 255, maxHeight: 255),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  const Gap(20),
+                  _buildCardImage(),
+                  const Gap(10),
+                  _buildCardText(),
+                  const Gap(20)
+                ],
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -68,8 +122,8 @@ class _CustomOfferingCardState extends State<CustomOfferingCard> {
       alignment: Alignment.center,
       children: [
         Container(
-          width: 90,
-          height: 90,
+          width: isPhone ? 90 : 125,
+          height: isPhone ? 90 : 125,
           decoration: _buildCardImageDeco(),
         ),
         Positioned(
@@ -77,8 +131,8 @@ class _CustomOfferingCardState extends State<CustomOfferingCard> {
           left: widget.offsetRight,
           child: Image.asset(
             widget.image,
-            width: 60,
-            height: 60,
+            width: isPhone ? 60 : 60,
+            height: isPhone ? 60 : 60,
           ),
         ),
       ],
@@ -89,14 +143,13 @@ class _CustomOfferingCardState extends State<CustomOfferingCard> {
     return BoxDecoration(
       boxShadow: <BoxShadow>[
         BoxShadow(
-          color: _isHovered ? Colors.black.withOpacity(.3) : Colors.transparent,
-          offset: const Offset(
-            0,
-            30,
-          ),
-          blurRadius: 26,
-          spreadRadius: -20,
-        ),
+            color: Colors.black.withOpacity(animation.value),
+            offset: const Offset(
+              0,
+              20,
+            ),
+            blurRadius: 40,
+            spreadRadius: -10),
       ],
       color: Colors.white,
       shape: BoxShape.circle,
@@ -109,9 +162,7 @@ class _CustomOfferingCardState extends State<CustomOfferingCard> {
       borderRadius: BorderRadius.circular(10),
       boxShadow: <BoxShadow>[
         BoxShadow(
-          color: _isHovered
-              ? const Color.fromARGB(255, 198, 255, 121)
-              : Colors.transparent,
+          color: Color.fromRGBO(198, 255, 121, shadeAnimation.value),
           offset: Offset(0, 60),
           spreadRadius: -40,
           blurRadius: 40,

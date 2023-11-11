@@ -52,12 +52,6 @@ class _MenuState extends State<Menu> {
           color: const Color.fromARGB(100, 6, 0, 177),
           blurRadius: 50,
         ),
-        // BoxShadow(
-        //   offset: const Offset(0, 40),
-        //   spreadRadius: -80,
-        //   color: Color.fromARGB(44, 0, 0, 0),
-        //   blurRadius: 50,
-        // ),
       ],
     );
   }
