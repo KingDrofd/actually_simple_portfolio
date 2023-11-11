@@ -81,7 +81,7 @@ class YearsOfExperience extends StatelessWidget {
           text: "03",
           strokeColor: Color.fromRGBO(219, 154, 219, 1),
           textColor: Colors.white,
-          fontSize: 100,
+          fontSize: 90,
           strokeWidth: 6,
           shadow: [
             Shadow(
@@ -91,12 +91,12 @@ class YearsOfExperience extends StatelessWidget {
             ),
           ],
         ),
-        Gap(40),
+        Gap(20),
         CustomText(
           text: "Years of experience",
           strokeColor: Colors.transparent,
           textColor: Color.fromRGBO(219, 154, 219, 1),
-          fontSize: 20,
+          fontSize: 18,
           strokeWidth: 0,
         ),
       ],

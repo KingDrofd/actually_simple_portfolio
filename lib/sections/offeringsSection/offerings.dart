@@ -66,6 +66,7 @@ class Offerings extends StatelessWidget {
             width: isPhone ? 550 : 1100,
             height: isPhone ? 550 : 260,
             child: GridView.count(
+              clipBehavior: Clip.none,
               crossAxisSpacing: 20,
               mainAxisSpacing: 20,
               scrollDirection: isPhone ? Axis.vertical : Axis.horizontal,
