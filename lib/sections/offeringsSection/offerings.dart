@@ -11,7 +11,7 @@ class Offerings extends StatelessWidget {
   Widget build(BuildContext context) {
     double currentSize = MediaQuery.sizeOf(context).width;
 
-    if ((MediaQuery.sizeOf(context).width) < 700) {
+    if ((MediaQuery.sizeOf(context).width) < 1100) {
       isPhone = true;
     } else {
       isPhone = false;
@@ -66,7 +66,7 @@ class Offerings extends StatelessWidget {
             width: isPhone ? 550 : 1100,
             height: isPhone ? 550 : 260,
             child: GridView.count(
-              clipBehavior: Clip.none,
+              clipBehavior: isPhone ? Clip.hardEdge : Clip.none,
               crossAxisSpacing: 20,
               mainAxisSpacing: 20,
               scrollDirection: isPhone ? Axis.vertical : Axis.horizontal,

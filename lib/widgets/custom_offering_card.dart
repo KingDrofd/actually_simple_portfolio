@@ -62,7 +62,7 @@ class _CustomOfferingCardState extends State<CustomOfferingCard>
 
   @override
   Widget build(BuildContext context) {
-    if ((MediaQuery.sizeOf(context).width) < 700) {
+    if ((MediaQuery.sizeOf(context).width) < 1100) {
       isPhone = true;
     } else {
       isPhone = false;

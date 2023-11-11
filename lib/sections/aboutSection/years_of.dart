@@ -19,6 +19,7 @@ class YearsOfExperience extends StatelessWidget {
     }
     return Flex(
       direction: isPhone ? Axis.vertical : Axis.horizontal,
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Stack(
           alignment: Alignment.center,
