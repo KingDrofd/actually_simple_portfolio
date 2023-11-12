@@ -8,15 +8,17 @@ class CustomOfferingCard extends StatefulWidget {
     super.key,
     this.offsetRight = 0,
     this.text = "Card Text",
+    this.imageSize = 60,
     this.image = "assets/icons/graphic_design.png",
     this.color = const Color.fromARGB(255, 228, 255, 199),
-    this.shadowColor = const Color.fromARGB(255, 198, 255, 121),
+    this.shadowColor = const Color.fromARGB(255, 190, 255, 105),
   });
   final String text;
   final String image;
   final Color color;
   final double offsetRight;
   final Color shadowColor;
+  final double imageSize;
 
   @override
   State<CustomOfferingCard> createState() => _CustomOfferingCardState();
@@ -131,8 +133,8 @@ class _CustomOfferingCardState extends State<CustomOfferingCard>
           left: widget.offsetRight,
           child: Image.asset(
             widget.image,
-            width: isPhone ? 60 : 60,
-            height: isPhone ? 60 : 60,
+            width: isPhone ? 60 : widget.imageSize,
+            height: isPhone ? 60 : widget.imageSize,
           ),
         ),
       ],
@@ -158,14 +160,14 @@ class _CustomOfferingCardState extends State<CustomOfferingCard>
 
   BoxDecoration _buildOfferingCardDeco() {
     return BoxDecoration(
-      color: const Color.fromARGB(255, 228, 255, 199),
+      color: widget.color,
       borderRadius: BorderRadius.circular(10),
       boxShadow: <BoxShadow>[
         BoxShadow(
-          color: Color.fromRGBO(198, 255, 121, shadeAnimation.value),
-          offset: Offset(0, 60),
-          spreadRadius: -40,
-          blurRadius: 40,
+          color: widget.shadowColor.withOpacity(shadeAnimation.value),
+          offset: Offset(0, 80),
+          spreadRadius: -50,
+          blurRadius: 60,
         ),
       ],
     );

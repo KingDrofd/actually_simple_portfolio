@@ -29,12 +29,12 @@ class YearsOfExperience extends StatelessWidget {
               height: 250,
               decoration: BoxDecoration(
                 color: const Color.fromRGBO(247, 232, 255, 1),
-                borderRadius: BorderRadius.circular(20),
+                borderRadius: BorderRadius.circular(10),
               ),
             ),
             Container(
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20),
+                borderRadius: BorderRadius.circular(10),
                 color: const Color.fromRGBO(237, 210, 252, 1),
                 boxShadow: const <BoxShadow>[
                   BoxShadow(

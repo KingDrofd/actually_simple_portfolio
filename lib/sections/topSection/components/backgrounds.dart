@@ -1,3 +1,4 @@
+import 'package:actually_simple_portfolio/constants.dart';
 import 'package:flutter/material.dart';
 
 class BuildBackgrounds extends StatelessWidget {
@@ -7,6 +8,11 @@ class BuildBackgrounds extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if ((MediaQuery.sizeOf(context).width) < 1100) {
+      isPhone = true;
+    } else {
+      isPhone = false;
+    }
     return Column(
       children: [
         Container(
@@ -27,7 +33,7 @@ class BuildBackgrounds extends StatelessWidget {
         ),
         Container(
           width: double.maxFinite,
-          height: 2000,
+          height: isPhone ? 2000 : 1200,
           color: Colors.white,
         ),
         Container(
