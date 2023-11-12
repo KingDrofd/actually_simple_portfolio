@@ -73,17 +73,29 @@ class Offerings extends StatelessWidget {
               crossAxisCount: isPhone ? 2 : 1,
               children: const [
                 CustomOfferingCard(
-                  text: "Web Design",
+                  image: "assets/icons/web_design.png",
+                  text: "Web & Mobile Design",
+                  color: Color.fromARGB(255, 217, 255, 252),
+                  shadowColor: Color.fromARGB(255, 142, 255, 246),
+                  imageSize: 80,
                   offsetRight: 4,
                 ),
                 CustomOfferingCard(
+                  imageSize: 80,
+                  image: "assets/icons/ui_design.png",
                   text: "UI Design",
                 ),
                 CustomOfferingCard(
-                  text: "Interaction Design",
+                  imageSize: 80,
+                  image: "assets/icons/3d_design.png",
+                  text: "3D Design",
+                  color: Color.fromARGB(255, 254, 224, 224),
+                  shadowColor: Color.fromARGB(255, 255, 183, 183),
                 ),
                 CustomOfferingCard(
                   text: "Backend",
+                  color: Color.fromARGB(255, 254, 243, 221),
+                  shadowColor: Color.fromARGB(255, 255, 218, 143),
                 ),
               ],
             ),
