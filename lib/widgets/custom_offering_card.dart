@@ -1,4 +1,5 @@
 import 'package:actually_simple_portfolio/constants.dart';
+import 'package:actually_simple_portfolio/utils/check_phone.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -64,11 +65,6 @@ class _CustomOfferingCardState extends State<CustomOfferingCard>
 
   @override
   Widget build(BuildContext context) {
-    if ((MediaQuery.sizeOf(context).width) < 1100) {
-      isPhone = true;
-    } else {
-      isPhone = false;
-    }
     return MouseRegion(
       cursor: SystemMouseCursors.click,
       onEnter: (event) {
@@ -83,31 +79,43 @@ class _CustomOfferingCardState extends State<CustomOfferingCard>
           _animationController.reverse();
         });
       },
-      child: Stack(
-        alignment: Alignment.center,
-        children: [
-          AnimatedPositioned(
-            duration: Duration(milliseconds: 300),
-            bottom: _isHovered ? 5 : 0,
-            child: Container(
-              alignment: Alignment.center,
-              decoration: _buildOfferingCardDeco(),
-              width: isPhone ? 220 : 255,
-              height: isPhone ? 220 : 255,
-              constraints: BoxConstraints(maxWidth: 255, maxHeight: 255),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  const Gap(20),
-                  _buildCardImage(),
-                  const Gap(10),
-                  _buildCardText(),
-                  const Gap(20)
-                ],
+      child: GestureDetector(
+        onTap: () {
+          setState(() {
+            if (checkPhone(context) && _isHovered == false) {
+              _isHovered = true;
+              _animationController.forward();
+            } else {
+              _isHovered = false;
+              _animationController.reverse();
+            }
+          });
+        },
+        child: Stack(
+          alignment: Alignment.center,
+          children: [
+            AnimatedPositioned(
+              duration: Duration(milliseconds: 300),
+              bottom: _isHovered ? 5 : 0,
+              child: Container(
+                decoration: _buildOfferingCardDeco(),
+                width: checkPhone(context, size: 700) ? 180 : 255,
+                height: checkPhone(context, size: 700) ? 180 : 255,
+                constraints: BoxConstraints(maxWidth: 255, maxHeight: 255),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Gap(checkPhone(context, size: 1100) ? 10 : 20),
+                    _buildCardImage(),
+                    const Gap(10),
+                    _buildCardText(),
+                    Gap(checkPhone(context, size: 1100) ? 10 : 20),
+                  ],
+                ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
@@ -115,7 +123,8 @@ class _CustomOfferingCardState extends State<CustomOfferingCard>
   Text _buildCardText() {
     return Text(
       widget.text,
-      style: GoogleFonts.oswald(fontSize: 25),
+      style: GoogleFonts.oswald(
+          fontSize: checkPhone(context, size: 700) ? 16 : 25),
     );
   }
 
@@ -124,8 +133,8 @@ class _CustomOfferingCardState extends State<CustomOfferingCard>
       alignment: Alignment.center,
       children: [
         Container(
-          width: isPhone ? 90 : 125,
-          height: isPhone ? 90 : 125,
+          width: checkPhone(context) ? 90 : 125,
+          height: checkPhone(context) ? 90 : 125,
           decoration: _buildCardImageDeco(),
         ),
         Positioned(
@@ -133,8 +142,8 @@ class _CustomOfferingCardState extends State<CustomOfferingCard>
           left: widget.offsetRight,
           child: Image.asset(
             widget.image,
-            width: isPhone ? 60 : widget.imageSize,
-            height: isPhone ? 60 : widget.imageSize,
+            width: checkPhone(context) ? 60 : widget.imageSize,
+            height: checkPhone(context) ? 60 : widget.imageSize,
           ),
         ),
       ],

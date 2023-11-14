@@ -1,4 +1,4 @@
-import 'package:actually_simple_portfolio/constants.dart';
+import 'package:actually_simple_portfolio/utils/check_phone.dart';
 import 'package:flutter/material.dart';
 
 class BuildBackgrounds extends StatelessWidget {
@@ -8,11 +8,6 @@ class BuildBackgrounds extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if ((MediaQuery.sizeOf(context).width) < 1100) {
-      isPhone = true;
-    } else {
-      isPhone = false;
-    }
     return Column(
       children: [
         Container(
@@ -31,11 +26,35 @@ class BuildBackgrounds extends StatelessWidget {
             ),
           ),
         ),
-        Container(
-          width: double.maxFinite,
-          height: isPhone ? 2000 : 1200,
-          color: Colors.white,
+        LayoutBuilder(
+          builder: (context, constraints) {
+            double containerWidth = constraints.maxWidth;
+            double containerHeight = 1270;
+
+            if (containerWidth < 1100) {
+              containerHeight = 1750;
+            }
+            if (containerWidth < 700) {
+              containerHeight = 2100;
+            }
+
+            return Container(
+              width: containerWidth,
+              height: containerHeight,
+              color: Colors.white,
+              // child: Center(
+              //   child: Text('Width: $containerWidth\nHeight: $containerHeight'),
+              // ),
+            );
+          },
         ),
+        // Container(
+        //   width: double.maxFinite,
+        //   height: checkPhone(context) && !checkPhone(context, size: 1000)
+        //       ? 2050
+        //       : 1300,
+        //   color: Colors.white,
+        // ),
         Container(
           width: double.maxFinite,
           height: 698,

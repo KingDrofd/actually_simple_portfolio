@@ -1,10 +1,12 @@
 import 'package:actually_simple_portfolio/constants.dart';
 import 'package:actually_simple_portfolio/sections/aboutSection/about_buttons.dart';
 import 'package:actually_simple_portfolio/sections/aboutSection/about_section.dart';
+import 'package:actually_simple_portfolio/sections/offeringsSection/components/project_estimate.dart';
 import 'package:actually_simple_portfolio/sections/offeringsSection/offerings.dart';
 import 'package:actually_simple_portfolio/sections/topSection/components/backgrounds.dart';
 import 'package:actually_simple_portfolio/sections/topSection/top_section.dart';
 import 'package:actually_simple_portfolio/widgets/custom_offering_card.dart';
+import 'package:actually_simple_portfolio/widgets/custom_outlined_button.dart';
 
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
@@ -57,7 +59,7 @@ class _MainPageState extends State<MainPage> {
             curve: Curves.decelerate,
             child: SingleChildScrollView(
               controller: _scrollController,
-              physics: const NeverScrollableScrollPhysics(),
+              // physics: const NeverScrollableScrollPhysics(),
               child: Stack(
                 alignment: Alignment.topCenter,
                 children: [
@@ -72,6 +74,8 @@ class _MainPageState extends State<MainPage> {
                       AboutButtons(),
                       Gap(isPhone ? 150 : 100),
                       Offerings(),
+                      Gap(50),
+                      ProjectEstimate()
                     ],
                   ),
                 ],

@@ -1,3 +1,4 @@
+import 'package:actually_simple_portfolio/utils/check_phone.dart';
 import 'package:actually_simple_portfolio/widgets/custom_container.dart';
 import 'package:flutter/material.dart';
 
@@ -30,10 +31,10 @@ class Introductin extends StatelessWidget {
               .headlineSmall!
               .copyWith(color: Colors.white),
         ),
-        const Text(
+        Text(
           "Regad \nAbdellah",
           style: TextStyle(
-            fontSize: 100,
+            fontSize: checkPhone(context) ? 50 : 100,
             fontWeight: FontWeight.bold,
             color: Colors.white,
           ),

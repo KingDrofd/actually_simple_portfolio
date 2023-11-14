@@ -1,4 +1,5 @@
 import 'package:actually_simple_portfolio/constants.dart';
+import 'package:actually_simple_portfolio/utils/check_phone.dart';
 import 'package:actually_simple_portfolio/widgets/custom_offering_card.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
@@ -11,16 +12,11 @@ class Offerings extends StatelessWidget {
   Widget build(BuildContext context) {
     double currentSize = MediaQuery.sizeOf(context).width;
 
-    if ((MediaQuery.sizeOf(context).width) < 1100) {
-      isPhone = true;
-    } else {
-      isPhone = false;
-    }
     return Container(
       padding: EdgeInsets.only(left: 12, right: 12),
-      width: isPhone ? 550 : 1100,
+      width: checkPhone(context, size: 1100) ? 550 : 1100,
       constraints: const BoxConstraints(maxWidth: 1100),
-      height: isPhone ? 720 : 1100,
+      height: checkPhone(context, size: 1100) ? 720 : 530,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -50,11 +46,14 @@ class Offerings extends StatelessWidget {
                 children: [
                   Text(
                     "My Strong Arenas",
-                    style: GoogleFonts.oswald(fontSize: 20),
+                    style: GoogleFonts.oswald(
+                        fontSize: checkPhone(context, size: 600) ? 15 : 20),
                   ),
                   Text(
                     "Service Offerings",
-                    style: GoogleFonts.oswald(fontSize: 56),
+                    style: GoogleFonts.oswald(
+                      fontSize: checkPhone(context, size: 600) ? 45 : 50,
+                    ),
                   ),
                 ],
               ),
@@ -63,14 +62,18 @@ class Offerings extends StatelessWidget {
           Gap(50),
           Container(
             alignment: Alignment.center,
-            width: isPhone ? 550 : 1100,
-            height: isPhone ? 550 : 260,
+            width: checkPhone(context, size: 693) ? 400 : 1100,
+            height: checkPhone(context, size: 1100) ? 550 : 260,
             child: GridView.count(
-              clipBehavior: isPhone ? Clip.hardEdge : Clip.none,
-              crossAxisSpacing: 20,
-              mainAxisSpacing: 20,
-              scrollDirection: isPhone ? Axis.vertical : Axis.horizontal,
-              crossAxisCount: isPhone ? 2 : 1,
+              physics: NeverScrollableScrollPhysics(),
+              clipBehavior:
+                  checkPhone(context, size: 1100) ? Clip.none : Clip.none,
+              // crossAxisSpacing: checkPhone(context, size: 960) ? 0 : 10,
+              // mainAxisSpacing: checkPhone(context, size: 960) ? 0 : 10,
+              scrollDirection: checkPhone(context, size: 1100)
+                  ? Axis.vertical
+                  : Axis.horizontal,
+              crossAxisCount: checkPhone(context, size: 1100) ? 2 : 1,
               children: const [
                 CustomOfferingCard(
                   image: "assets/icons/web_design.png",

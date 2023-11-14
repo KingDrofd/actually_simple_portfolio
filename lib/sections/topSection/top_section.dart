@@ -28,7 +28,7 @@ class _TopSectionState extends State<TopSection> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
           const Gap(25),
-          _buildLogo(),
+          //_buildLogo(),
           const Gap(25),
           const Introductin(),
           const Gap(50),
