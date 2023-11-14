@@ -30,6 +30,7 @@ class _CustomOfferingCardState extends State<CustomOfferingCard>
   late AnimationController _animationController;
   bool _isHovered = false;
   late Animation<double> animation;
+  late Animation<double> animOffset;
   late Animation<double> shadeAnimation;
 
   @override
@@ -40,6 +41,14 @@ class _CustomOfferingCardState extends State<CustomOfferingCard>
       duration: Duration(milliseconds: 300),
     );
     animation = Tween<double>(begin: 0, end: .3)
+        .chain(
+          CurveTween(curve: Curves.easeInOutCubic),
+        )
+        .animate(_animationController)
+      ..addListener(() {
+        setState(() {});
+      });
+    animOffset = Tween<double>(begin: 0, end: -5)
         .chain(
           CurveTween(curve: Curves.easeInOutCubic),
         )
@@ -91,30 +100,24 @@ class _CustomOfferingCardState extends State<CustomOfferingCard>
             }
           });
         },
-        child: Stack(
-          alignment: Alignment.center,
-          children: [
-            AnimatedPositioned(
-              duration: Duration(milliseconds: 300),
-              bottom: _isHovered ? 5 : 0,
-              child: Container(
-                decoration: _buildOfferingCardDeco(),
-                width: checkPhone(context, size: 700) ? 180 : 255,
-                height: checkPhone(context, size: 700) ? 180 : 255,
-                constraints: BoxConstraints(maxWidth: 255, maxHeight: 255),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    Gap(checkPhone(context, size: 1100) ? 10 : 20),
-                    _buildCardImage(),
-                    const Gap(10),
-                    _buildCardText(),
-                    Gap(checkPhone(context, size: 1100) ? 10 : 20),
-                  ],
-                ),
-              ),
+        child: Transform.translate(
+          offset: Offset(0, animOffset.value),
+          child: Container(
+            decoration: _buildOfferingCardDeco(),
+            width: checkPhone(context, size: 700) ? 180 : 255,
+            height: checkPhone(context, size: 700) ? 180 : 255,
+            constraints: BoxConstraints(maxWidth: 255, maxHeight: 255),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Gap(checkPhone(context, size: 1100) ? 10 : 20),
+                _buildCardImage(),
+                const Gap(10),
+                _buildCardText(),
+                Gap(checkPhone(context, size: 1100) ? 10 : 20),
+              ],
             ),
-          ],
+          ),
         ),
       ),
     );
@@ -123,7 +126,9 @@ class _CustomOfferingCardState extends State<CustomOfferingCard>
   Text _buildCardText() {
     return Text(
       widget.text,
-      style: GoogleFonts.oswald(
+      style: GoogleFonts.quicksand(
+          letterSpacing: -1,
+          fontWeight: FontWeight.w500,
           fontSize: checkPhone(context, size: 700) ? 16 : 25),
     );
   }

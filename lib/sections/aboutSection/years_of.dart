@@ -64,7 +64,7 @@ class YearsOfExperience extends StatelessWidget {
       alignment: Alignment.center,
       child: SelectableText(
         lorem(paragraphs: 1, words: 50),
-        style: GoogleFonts.ubuntu(
+        style: GoogleFonts.quicksand(
           letterSpacing: 0.1,
           fontSize: 17,
           color: Colors.black,

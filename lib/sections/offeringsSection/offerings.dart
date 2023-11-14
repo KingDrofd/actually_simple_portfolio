@@ -28,14 +28,14 @@ class Offerings extends StatelessWidget {
               Column(
                 children: [
                   Container(
-                    width: 10,
+                    width: 5,
                     height: 30,
                     color: Colors.red,
                   ),
                   Container(
                     color: Colors.black,
-                    width: 10,
-                    height: 80,
+                    width: 5,
+                    height: 60,
                   )
                 ],
               ),
@@ -46,12 +46,13 @@ class Offerings extends StatelessWidget {
                 children: [
                   Text(
                     "My Strong Arenas",
-                    style: GoogleFonts.oswald(
+                    style: GoogleFonts.quicksand(
                         fontSize: checkPhone(context, size: 600) ? 15 : 20),
                   ),
                   Text(
                     "Service Offerings",
-                    style: GoogleFonts.oswald(
+                    style: GoogleFonts.quicksand(
+                      fontWeight: FontWeight.bold,
                       fontSize: checkPhone(context, size: 600) ? 45 : 50,
                     ),
                   ),
@@ -68,8 +69,8 @@ class Offerings extends StatelessWidget {
               physics: NeverScrollableScrollPhysics(),
               clipBehavior:
                   checkPhone(context, size: 1100) ? Clip.none : Clip.none,
-              // crossAxisSpacing: checkPhone(context, size: 960) ? 0 : 10,
-              // mainAxisSpacing: checkPhone(context, size: 960) ? 0 : 10,
+              crossAxisSpacing: checkPhone(context, size: 960) ? 10 : 20,
+              mainAxisSpacing: checkPhone(context, size: 960) ? 10 : 20,
               scrollDirection: checkPhone(context, size: 1100)
                   ? Axis.vertical
                   : Axis.horizontal,

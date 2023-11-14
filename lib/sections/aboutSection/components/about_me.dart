@@ -25,7 +25,7 @@ class AboutMeLeft extends StatelessWidget {
         children: [
           Text(
             "About\nMe",
-            style: GoogleFonts.ubuntu(
+            style: GoogleFonts.quicksand(
               fontSize: isPhone ? 40 : 60,
               letterSpacing: -0.5,
               fontWeight: FontWeight.bold,
@@ -34,7 +34,7 @@ class AboutMeLeft extends StatelessWidget {
           Gap(20),
           Text(
             "Signature\nHere",
-            style: GoogleFonts.ubuntu(
+            style: GoogleFonts.quicksand(
               fontSize: isPhone ? 30 : 40,
               color: Colors.black,
             ),
@@ -56,8 +56,9 @@ class AboutMeLeft extends StatelessWidget {
             alignment: Alignment.center,
             child: SelectableText(
               lorem(paragraphs: 1, words: 50),
-              style: GoogleFonts.ubuntu(
-                letterSpacing: 0.1,
+              style: GoogleFonts.quicksand(
+                fontWeight: FontWeight.w400,
+                // letterSpacing: -.5,
                 fontSize: 17,
                 color: Colors.black,
               ),

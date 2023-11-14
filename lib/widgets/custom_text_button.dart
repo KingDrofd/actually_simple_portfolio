@@ -46,7 +46,7 @@ class CustomTextButton extends StatelessWidget {
             Text(
               text,
               style: textStyle ??
-                  GoogleFonts.ubuntu(
+                  GoogleFonts.quicksand(
                     letterSpacing: -0.5,
                     fontWeight: FontWeight.bold,
                     color: Colors.black,

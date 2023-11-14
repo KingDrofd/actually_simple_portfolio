@@ -73,16 +73,16 @@ class ProjectEstimate extends StatelessWidget {
                   children: [
                     Text(
                       "Starting a new project?",
-                      style: GoogleFonts.oswald(
-                        fontSize: checkPhone(context, size: 900) ? 30 : 40,
-                      ),
+                      style: GoogleFonts.quicksand(
+                          fontSize: checkPhone(context, size: 900) ? 30 : 40,
+                          fontWeight: FontWeight.bold),
                       textAlign: TextAlign.center,
                     ),
                     if (!checkPhone(context))
                       Text(
                         "Get an estimate!",
                         textAlign: TextAlign.center,
-                        style: GoogleFonts.oswald(
+                        style: GoogleFonts.quicksand(
                           fontSize: checkPhone(context, size: 900) ? 15 : 20,
                         ),
                       ),
