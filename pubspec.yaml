@@ -44,6 +44,10 @@ dependencies:
   google_fonts: ^6.1.0
   space_fixer: ^0.1.1
   pixel_snap: ^0.1.2
+  scroll_to_index: ^3.0.1
+  url_launcher: ^6.2.1
+  flutter_file_downloader: ^1.1.4
+  download_assets: ^3.1.1
 
 dev_dependencies:
   flutter_test:

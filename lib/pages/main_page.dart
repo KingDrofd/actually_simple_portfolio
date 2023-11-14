@@ -1,17 +1,21 @@
 import 'package:actually_simple_portfolio/constants.dart';
 import 'package:actually_simple_portfolio/sections/aboutSection/about_buttons.dart';
 import 'package:actually_simple_portfolio/sections/aboutSection/about_section.dart';
+import 'package:actually_simple_portfolio/sections/contactSection/contact.dart';
 import 'package:actually_simple_portfolio/sections/offeringsSection/components/project_estimate.dart';
 import 'package:actually_simple_portfolio/sections/offeringsSection/offerings.dart';
+import 'package:actually_simple_portfolio/sections/projectsSections/projects.dart';
+import 'package:actually_simple_portfolio/sections/testimonialSection/tesimonials.dart';
 import 'package:actually_simple_portfolio/sections/topSection/components/backgrounds.dart';
 import 'package:actually_simple_portfolio/sections/topSection/top_section.dart';
-import 'package:actually_simple_portfolio/widgets/custom_offering_card.dart';
-import 'package:actually_simple_portfolio/widgets/custom_outlined_button.dart';
+import 'package:actually_simple_portfolio/utils/check_phone.dart';
 
 import 'package:flutter/material.dart';
+
 import 'package:gap/gap.dart';
-import 'package:google_fonts/google_fonts.dart';
+
 import 'package:rive/rive.dart';
+import 'package:scroll_to_index/scroll_to_index.dart';
 
 import 'package:web_smooth_scroll/web_smooth_scroll.dart';
 
@@ -43,7 +47,13 @@ class _MainPageState extends State<MainPage> {
 
   @override
   Widget build(BuildContext context) {
-    GlobalKey<ScaffoldState> _globalKey = GlobalKey<ScaffoldState>();
+    final aboutKey = GlobalKey();
+    final offeringsKey = GlobalKey();
+    final projectsKey = GlobalKey();
+    final testimonialKey = GlobalKey();
+    final topKey = GlobalKey();
+    final contactKey = GlobalKey();
+    AutoScrollController _scrollController = AutoScrollController();
     return Scaffold(
       drawer: Drawer(
           child: ListView(
@@ -59,7 +69,9 @@ class _MainPageState extends State<MainPage> {
             curve: Curves.decelerate,
             child: SingleChildScrollView(
               controller: _scrollController,
-              // physics: const NeverScrollableScrollPhysics(),
+              physics: checkPhone(context, size: 700)
+                  ? ScrollPhysics()
+                  : NeverScrollableScrollPhysics(),
               child: Stack(
                 alignment: Alignment.topCenter,
                 children: [
@@ -67,15 +79,53 @@ class _MainPageState extends State<MainPage> {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      TopSection(),
-                      Gap(isPhone ? 20 : 100),
-                      AboutSection(),
+                      AutoScrollTag(
+                        key: topKey,
+                        index: 0,
+                        controller: _scrollController,
+                        child: TopSection(
+                          autoScrollController: _scrollController,
+                        ),
+                      ),
+                      Gap(isPhone ? 100 : 100),
+                      AutoScrollTag(
+                        key: aboutKey,
+                        index: 1,
+                        controller: _scrollController,
+                        child: AboutSection(),
+                      ),
                       Gap(100),
                       AboutButtons(),
-                      Gap(isPhone ? 150 : 100),
-                      Offerings(),
+                      Gap(isPhone ? 100 : 100),
+                      AutoScrollTag(
+                        key: offeringsKey,
+                        index: 2,
+                        controller: _scrollController,
+                        child: Offerings(),
+                      ),
                       Gap(50),
-                      ProjectEstimate()
+                      ProjectEstimate(),
+                      Gap(100),
+                      AutoScrollTag(
+                        key: projectsKey,
+                        index: 3,
+                        controller: _scrollController,
+                        child: Projects(),
+                      ),
+                      Gap(200),
+                      AutoScrollTag(
+                        key: testimonialKey,
+                        index: 4,
+                        controller: _scrollController,
+                        child: Testimonials(),
+                      ),
+                      Gap(100),
+                      AutoScrollTag(
+                        key: contactKey,
+                        index: 5,
+                        controller: _scrollController,
+                        child: Contact(),
+                      ),
                     ],
                   ),
                 ],
@@ -83,6 +133,17 @@ class _MainPageState extends State<MainPage> {
             ),
           ),
         ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.white,
+        onPressed: () {
+          _scrollController.scrollToIndex(0);
+        },
+        child: Icon(
+          Icons.arrow_upward,
+          color: Colors.black,
+          size: 30,
+        ),
       ),
     );
   }

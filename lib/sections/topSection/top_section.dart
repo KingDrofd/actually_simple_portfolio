@@ -3,10 +3,15 @@ import 'package:actually_simple_portfolio/sections/topSection/components/menu.da
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:lottie/lottie.dart';
+import 'package:scroll_to_index/scroll_to_index.dart';
 
 class TopSection extends StatefulWidget {
-  const TopSection({super.key});
+  const TopSection({
+    super.key,
+    required this.autoScrollController,
+  });
 
+  final AutoScrollController autoScrollController;
   @override
   State<TopSection> createState() => _TopSectionState();
 }
@@ -28,11 +33,14 @@ class _TopSectionState extends State<TopSection> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
           const Gap(25),
-          //_buildLogo(),
+          _buildLogo(),
           const Gap(25),
           const Introductin(),
           const Gap(50),
-          if (isDesktop(context)) const Menu(),
+          if (isDesktop(context))
+            Menu(
+              autoScrollController: widget.autoScrollController,
+            ),
         ],
       ),
     );

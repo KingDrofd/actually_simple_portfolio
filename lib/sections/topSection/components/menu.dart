@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:scroll_to_index/scroll_to_index.dart';
 
 class Menu extends StatefulWidget {
-  const Menu({super.key});
+  const Menu({
+    super.key,
+    required this.autoScrollController,
+  });
 
+  final AutoScrollController autoScrollController;
   @override
   State<Menu> createState() => _MenuState();
 }
@@ -61,6 +66,7 @@ class _MenuState extends State<Menu> {
       onTap: () {
         setState(() {
           selectedIndex = hoverIndex;
+          widget.autoScrollController.scrollToIndex(selectedIndex);
         });
       },
       onHover: (value) {
