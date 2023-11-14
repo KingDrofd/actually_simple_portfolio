@@ -55,13 +55,48 @@ class BuildBackgrounds extends StatelessWidget {
         //       : 1300,
         //   color: Colors.white,
         // ),
+        LayoutBuilder(builder: (context, constraints) {
+          double containerWidth = constraints.maxWidth;
+          double containerHeight = 1100;
+          if (containerWidth < 1120) {
+            containerHeight = 700;
+          }
+          if (containerWidth < 700) {
+            containerHeight = 1000;
+          }
+          return Container(
+            width: double.maxFinite,
+            height: containerHeight,
+            decoration: const BoxDecoration(
+              image: DecorationImage(
+                colorFilter: ColorFilter.mode(
+                  Color.fromARGB(210, 236, 232, 249),
+                  BlendMode.color,
+                ),
+                fit: BoxFit.cover,
+                image: AssetImage(
+                  "assets/recent_work_bg.png",
+                ),
+              ),
+            ),
+          );
+        }),
+
+        Container(
+          width: 1270,
+          height: 800,
+          color: Colors.white,
+          // child: Center(
+          //   child: Text('Width: $containerWidth\nHeight: $containerHeight'),
+          // ),
+        ),
         Container(
           width: double.maxFinite,
-          height: 698,
+          height: 1400,
           decoration: const BoxDecoration(
             image: DecorationImage(
               colorFilter: ColorFilter.mode(
-                Color.fromARGB(210, 236, 232, 249),
+                Color.fromARGB(210, 232, 240, 249),
                 BlendMode.color,
               ),
               fit: BoxFit.cover,
