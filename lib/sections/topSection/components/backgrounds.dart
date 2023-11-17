@@ -15,13 +15,13 @@ class BuildBackgrounds extends StatelessWidget {
           height: 698,
           decoration: const BoxDecoration(
             image: DecorationImage(
-              colorFilter: ColorFilter.mode(
-                Color.fromARGB(210, 236, 232, 249),
-                BlendMode.color,
-              ),
+              // colorFilter: ColorFilter.mode(
+              //   Color.fromARGB(78, 104, 58, 183),
+              //   BlendMode.color,
+              // ),
               fit: BoxFit.cover,
               image: AssetImage(
-                "assets/bg.png",
+                "assets/bgTopAlt2.png",
               ),
             ),
           ),

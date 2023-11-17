@@ -1,5 +1,3 @@
-import 'dart:html';
-
 import 'package:actually_simple_portfolio/constants.dart';
 import 'package:actually_simple_portfolio/utils/check_phone.dart';
 import 'package:actually_simple_portfolio/widgets/custom_outlined_button.dart';
@@ -7,13 +5,15 @@ import 'package:actually_simple_portfolio/widgets/custom_text_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_file_downloader/flutter_file_downloader.dart';
 import 'package:gap/gap.dart';
+import 'package:scroll_to_index/scroll_to_index.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class AboutButtons extends StatelessWidget {
   const AboutButtons({
     super.key,
+    required this.autoScrollController,
   });
-
+  final AutoScrollController autoScrollController;
   @override
   Widget build(BuildContext context) {
     return Flex(
@@ -22,7 +22,9 @@ class AboutButtons extends StatelessWidget {
       children: [
         CustomOutlinedButton(
           text: "Hire Me!",
-          press: () {},
+          press: () {
+            autoScrollController.scrollToIndex(5);
+          },
           imageSrc: "assets/handshake.png",
         ),
         Gap(checkPhone(context) ? 30 : 50),

@@ -95,7 +95,9 @@ class _MainPageState extends State<MainPage> {
                         child: AboutSection(),
                       ),
                       Gap(100),
-                      AboutButtons(),
+                      AboutButtons(
+                        autoScrollController: _scrollController,
+                      ),
                       Gap(isPhone ? 100 : 100),
                       AutoScrollTag(
                         key: offeringsKey,
@@ -104,7 +106,9 @@ class _MainPageState extends State<MainPage> {
                         child: Offerings(),
                       ),
                       Gap(50),
-                      ProjectEstimate(),
+                      ProjectEstimate(
+                        autoScrollController: _scrollController,
+                      ),
                       Gap(100),
                       AutoScrollTag(
                         key: projectsKey,

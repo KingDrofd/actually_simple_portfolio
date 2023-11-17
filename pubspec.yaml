@@ -48,6 +48,8 @@ dependencies:
   url_launcher: ^6.2.1
   flutter_file_downloader: ^1.1.4
   download_assets: ^3.1.1
+  audioplayers: ^5.2.1
+  just_audio: ^0.9.36
 
 dev_dependencies:
   flutter_test:
@@ -74,6 +76,7 @@ flutter:
   assets:
     - assets/
     - assets/icons/
+    - assets/mp3/
 
   #   - images/a_dot_ham.jpeg
 

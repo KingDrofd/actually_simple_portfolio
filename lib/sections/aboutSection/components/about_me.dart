@@ -55,7 +55,10 @@ class AboutMeLeft extends StatelessWidget {
             height: 240,
             alignment: Alignment.center,
             child: SelectableText(
-              lorem(paragraphs: 1, words: 50),
+              "🚀 Hi, I'm Abdellah, a software developer passionate about"
+              " Flutter. I bring ideas to life through code, and dabble in 3D "
+              "design. In my spare time, I turn my creative energy into game "
+              "development 👾💻✨",
               style: GoogleFonts.quicksand(
                 fontWeight: FontWeight.w400,
                 // letterSpacing: -.5,

@@ -60,12 +60,22 @@ class Projects extends StatelessWidget {
             direction: checkPhone(context) ? Axis.vertical : Axis.horizontal,
             children: [
               Expanded(
-                  child: CustomProjectCard(),
-                  flex: checkPhone(context) ? 0 : 1),
+                  flex: checkPhone(context) ? 0 : 1,
+                  child: CustomProjectCard(
+                    projectFocus: "Unity Plugin",
+                    projectDescription: "Custom Character Controller",
+                    url: "https://github.com/KingDrofd/CCC",
+                    shadowColor: Color.fromARGB(255, 255, 183, 183),
+                  )),
               Gap(30),
               Expanded(
-                  child: CustomProjectCard(),
-                  flex: checkPhone(context) ? 0 : 1),
+                  flex: checkPhone(context) ? 0 : 1,
+                  child: CustomProjectCard(
+                    shadowColor: Color.fromARGB(255, 255, 183, 183),
+                    projectFocus: "Unity Plugin",
+                    projectDescription: "Custom Parallax Effect For 2D Games",
+                    url: "https://github.com/KingDrofd/Parallax2D",
+                  )),
             ],
           ),
           Gap(30),
@@ -74,12 +84,25 @@ class Projects extends StatelessWidget {
             direction: checkPhone(context) ? Axis.vertical : Axis.horizontal,
             children: [
               Expanded(
-                  child: CustomProjectCard(),
-                  flex: checkPhone(context) ? 0 : 1),
+                  flex: checkPhone(context) ? 0 : 1,
+                  child: CustomProjectCard(
+                    shadowColor: Color.fromARGB(255, 142, 255, 246),
+                    projectFocus: "Website Portfolio",
+                    projectDescription:
+                        "Web Portfolio Inspired By The Game Nier Automata",
+                    image: "assets/folder.png",
+                    url: "https://kingdrofd.github.io/#/",
+                  )),
               Gap(30),
               Expanded(
-                  child: CustomProjectCard(),
-                  flex: checkPhone(context) ? 0 : 1),
+                  flex: checkPhone(context) ? 0 : 1,
+                  child: CustomProjectCard(
+                    shadowColor: Color.fromARGB(255, 255, 218, 143),
+                    projectFocus: "Flutter",
+                    image: "assets/share to glass alt.png",
+                    projectDescription:
+                        "Simple Local Sharing App Between Phone And Pc",
+                  )),
             ],
           ),
         ],

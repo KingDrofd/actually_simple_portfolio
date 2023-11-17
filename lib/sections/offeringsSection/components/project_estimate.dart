@@ -4,12 +4,14 @@ import 'package:actually_simple_portfolio/widgets/custom_outlined_button.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:scroll_to_index/scroll_to_index.dart';
 
 class ProjectEstimate extends StatelessWidget {
   const ProjectEstimate({
     super.key,
+    required this.autoScrollController,
   });
-
+  final AutoScrollController autoScrollController;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -91,8 +93,10 @@ class ProjectEstimate extends StatelessWidget {
               ],
             ),
             CustomOutlinedButton(
-              text: "Contact Us!",
-              press: () {},
+              text: "Contact Me!",
+              press: () {
+                autoScrollController.scrollToIndex(5);
+              },
               imageSrc: "assets/handshake.png",
             ),
           ],

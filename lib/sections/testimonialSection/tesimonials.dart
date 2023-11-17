@@ -79,7 +79,7 @@ class _TestimonialsState extends State<Testimonials> {
                     "Feedback Recieved",
                     style: GoogleFonts.quicksand(
                       fontWeight: FontWeight.bold,
-                      fontSize: checkPhone(context, size: 600) ? 45 : 50,
+                      fontSize: checkPhone(context, size: 600) ? 30 : 50,
                     ),
                   ),
                 ],

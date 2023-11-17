@@ -63,7 +63,9 @@ class YearsOfExperience extends StatelessWidget {
       height: 240,
       alignment: Alignment.center,
       child: SelectableText(
-        lorem(paragraphs: 1, words: 50),
+        "From indie games to freelance Flutter gigs, my journey blends pixels"
+        " and precision. With a year in indie games and a focus on Flutter freelancing,"
+        "I'm here to turn concepts into code. 🚀",
         style: GoogleFonts.quicksand(
           letterSpacing: 0.1,
           fontSize: 17,

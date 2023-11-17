@@ -2,17 +2,23 @@ import 'package:actually_simple_portfolio/utils/check_phone.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class CustomProjectCard extends StatefulWidget {
   const CustomProjectCard({
     super.key,
+    this.shadowColor = const Color.fromARGB(149, 6, 0, 177),
     this.projectDescription = "New & Fresh Looking "
         " Portfolio indeed at the end",
     this.projectFocus = "Project Focus",
+    this.url = "https://youtu.be/dQw4w9WgXcQ",
+    this.image = "assets/untitled.png",
   });
   final String projectDescription;
   final String projectFocus;
-
+  final String url;
+  final String image;
+  final Color shadowColor;
   @override
   State<CustomProjectCard> createState() => _CustomProjectCardState();
 }
@@ -74,7 +80,17 @@ class _CustomProjectCardState extends State<CustomProjectCard>
         });
       },
       child: GestureDetector(
-        onTap: () {},
+        onTap: () {
+          setState(() {
+            if (checkPhone(context) && _isHovered == false) {
+              _isHovered = true;
+              _animationController.forward();
+            } else {
+              _isHovered = false;
+              _animationController.reverse();
+            }
+          });
+        },
         child: Transform.translate(
           offset: Offset(0, animation.value),
           child: LayoutBuilder(builder: (context, snapshot) {
@@ -85,8 +101,7 @@ class _CustomProjectCardState extends State<CustomProjectCard>
                     offset:
                         Offset(0, checkPhone(context, size: 1120) ? 50 : 100),
                     blurRadius: 50,
-                    color: Color.fromARGB(149, 6, 0, 177)
-                        .withOpacity(shadeAnimation.value),
+                    color: widget.shadowColor.withOpacity(shadeAnimation.value),
                     spreadRadius: -80,
                   ),
                 ],
@@ -142,7 +157,11 @@ class _CustomProjectCardState extends State<CustomProjectCard>
     return MouseRegion(
       cursor: SystemMouseCursors.click,
       child: GestureDetector(
-        onTap: () {},
+        onTap: () {
+          final string = widget.url;
+          final uri = Uri.parse(string);
+          launchUrl(uri);
+        },
         child: Text(
           "View Details",
           style: GoogleFonts.quicksand(
@@ -157,10 +176,10 @@ class _CustomProjectCardState extends State<CustomProjectCard>
   Container buildCardImage() {
     return Container(
       decoration: BoxDecoration(
-          image: const DecorationImage(
+          image: DecorationImage(
             fit: BoxFit.cover,
             image: AssetImage(
-              "assets/background.jpg",
+              widget.image,
             ),
           ),
           borderRadius: BorderRadius.circular(10)),
