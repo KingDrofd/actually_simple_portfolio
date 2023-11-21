@@ -7,6 +7,7 @@ import 'package:actually_simple_portfolio/sections/offeringsSection/offerings.da
 import 'package:actually_simple_portfolio/sections/projectsSections/projects.dart';
 import 'package:actually_simple_portfolio/sections/testimonialSection/tesimonials.dart';
 import 'package:actually_simple_portfolio/sections/topSection/components/backgrounds.dart';
+import 'package:actually_simple_portfolio/sections/topSection/components/menu.dart';
 import 'package:actually_simple_portfolio/sections/topSection/top_section.dart';
 import 'package:actually_simple_portfolio/utils/check_phone.dart';
 
@@ -53,12 +54,10 @@ class _MainPageState extends State<MainPage> {
     final testimonialKey = GlobalKey();
     final topKey = GlobalKey();
     final contactKey = GlobalKey();
+
     AutoScrollController _scrollController = AutoScrollController();
+    Menu myMenu = Menu(autoScrollController: _scrollController);
     return Scaffold(
-      drawer: Drawer(
-          child: ListView(
-        children: [],
-      )),
       body: Stack(
         alignment: Alignment.topCenter,
         children: [
@@ -69,7 +68,7 @@ class _MainPageState extends State<MainPage> {
             curve: Curves.decelerate,
             child: SingleChildScrollView(
               controller: _scrollController,
-              physics: checkPhone(context, size: 700)
+              physics: checkPhone(context, size: 960)
                   ? ScrollPhysics()
                   : NeverScrollableScrollPhysics(),
               child: Stack(
@@ -123,7 +122,7 @@ class _MainPageState extends State<MainPage> {
                         controller: _scrollController,
                         child: Testimonials(),
                       ),
-                      Gap(100),
+                      Gap(150),
                       AutoScrollTag(
                         key: contactKey,
                         index: 5,
@@ -142,6 +141,9 @@ class _MainPageState extends State<MainPage> {
         backgroundColor: Colors.white,
         onPressed: () {
           _scrollController.scrollToIndex(0);
+          setState(() {
+            myMenu.resetSelectedIndex();
+          });
         },
         child: Icon(
           Icons.arrow_upward,

@@ -3,6 +3,9 @@
 #
 
 list(APPEND FLUTTER_PLUGIN_LIST
+  audioplayers_windows
+  firebase_core
+  firebase_storage
   rive_common
   url_launcher_windows
 )

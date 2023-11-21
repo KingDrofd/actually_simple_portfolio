@@ -1,4 +1,5 @@
 import 'package:actually_simple_portfolio/constants.dart';
+import 'package:actually_simple_portfolio/utils/check_phone.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_lorem/flutter_lorem.dart';
 import 'package:gap/gap.dart';
@@ -26,18 +27,15 @@ class AboutMeLeft extends StatelessWidget {
           Text(
             "About\nMe",
             style: GoogleFonts.quicksand(
-              fontSize: isPhone ? 40 : 60,
+              fontSize: isPhone ? 40 : 50,
               letterSpacing: -0.5,
               fontWeight: FontWeight.bold,
             ),
           ),
           Gap(20),
-          Text(
-            "Signature\nHere",
-            style: GoogleFonts.quicksand(
-              fontSize: isPhone ? 30 : 40,
-              color: Colors.black,
-            ),
+          Image.asset(
+            "assets/signature.png",
+            height: checkPhone(context) ? 80 : 120,
           ),
         ],
       ),

@@ -1,12 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+
 import 'package:scroll_to_index/scroll_to_index.dart';
 
 class Menu extends StatefulWidget {
-  const Menu({
+  Menu({
     super.key,
     required this.autoScrollController,
   });
+
+  int selectedIndex = 0;
+  int hoverIndex = -1;
+
+  void resetSelectedIndex() {
+    selectedIndex = -1;
+    // hoverIndex = -1;
+  }
 
   final AutoScrollController autoScrollController;
   @override
@@ -14,9 +22,6 @@ class Menu extends StatefulWidget {
 }
 
 class _MenuState extends State<Menu> {
-  int selectedIndex = 0;
-  int hoverIndex = -1;
-
   List<String> menuItems = [
     "Home",
     "About",
@@ -65,13 +70,15 @@ class _MenuState extends State<Menu> {
     return InkWell(
       onTap: () {
         setState(() {
-          selectedIndex = hoverIndex;
-          widget.autoScrollController.scrollToIndex(selectedIndex);
+          widget.selectedIndex = widget.hoverIndex;
+          widget.autoScrollController.scrollToIndex(widget.selectedIndex);
         });
       },
       onHover: (value) {
         setState(() {
-          value ? hoverIndex = index : hoverIndex = selectedIndex;
+          value
+              ? widget.hoverIndex = index
+              : widget.hoverIndex = widget.selectedIndex;
         });
       },
       child: _buildHoverAnimaion(index),
@@ -98,15 +105,17 @@ class _MenuState extends State<Menu> {
             duration: const Duration(milliseconds: 200),
             left: 0,
             right: 0,
-            bottom: selectedIndex != index && hoverIndex == index ? -20 : -32,
-            child: Image.asset("assets/hover.png"),
+            bottom: widget.selectedIndex != index && widget.hoverIndex == index
+                ? -20
+                : -32,
+            child: Image.asset("assets/Hover.png"),
           ),
           AnimatedPositioned(
             duration: const Duration(milliseconds: 200),
             left: 0,
             right: 0,
-            bottom: selectedIndex == index ? -2 : -32,
-            child: Image.asset("assets/hover.png"),
+            bottom: widget.selectedIndex == index ? -2 : -32,
+            child: Image.asset("assets/Hover.png"),
           ),
         ],
       ),

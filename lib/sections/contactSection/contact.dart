@@ -7,6 +7,14 @@ import 'package:gap/gap.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+extension EmailValidator on String {
+  bool isValidEmail() {
+    return RegExp(
+            r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$')
+        .hasMatch(this);
+  }
+}
+
 class Contact extends StatelessWidget {
   const Contact({
     super.key,
@@ -25,11 +33,12 @@ class Contact extends StatelessWidget {
     } else if (checkPhone(context, size: 850)) {
       smallFieldWidth = 100;
     }
+    final _emailKey = GlobalKey<FormState>();
+
     return Container(
-      padding: const EdgeInsets.only(left: 10, right: 10),
-      width: 1100,
+      padding: const EdgeInsets.only(left: 8, right: 8),
+      width: 1200,
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.start,
@@ -39,13 +48,13 @@ class Contact extends StatelessWidget {
                 children: [
                   Container(
                     width: 5,
-                    height: 30,
+                    height: checkPhone(context, size: 600) ? 15 : 30,
                     color: Colors.purple,
                   ),
                   Container(
                     color: Colors.black,
                     width: 5,
-                    height: 60,
+                    height: checkPhone(context, size: 600) ? 40 : 60,
                   )
                 ],
               ),
@@ -60,10 +69,10 @@ class Contact extends StatelessWidget {
                         fontSize: checkPhone(context, size: 600) ? 15 : 20),
                   ),
                   Text(
-                    "Contact Us!",
+                    "Contact Me",
                     style: GoogleFonts.quicksand(
                       fontWeight: FontWeight.bold,
-                      fontSize: checkPhone(context, size: 600) ? 45 : 50,
+                      fontSize: checkPhone(context, size: 600) ? 30 : 60,
                     ),
                   ),
                 ],
@@ -110,7 +119,7 @@ class Contact extends StatelessWidget {
                         ),
                         SocialCard(
                           text: "Discord",
-                          image: "Discord-Emblem.png",
+                          image: "assets/Discord-Emblem.png",
                           link:
                               "https://www.discordapp.com/users/430135831051763714",
                           color: Color.fromARGB(255, 214, 220, 255),
@@ -120,7 +129,7 @@ class Contact extends StatelessWidget {
                           color: Color.fromARGB(255, 215, 215, 215),
                           shadowColor: const Color.fromARGB(255, 61, 61, 61),
                           text: "GitHub",
-                          image: "github-mark.png",
+                          image: "assets/github-mark.png",
                           link: "https://github.com/KingDrofd",
                         ),
                       ],
@@ -143,6 +152,21 @@ class Contact extends StatelessWidget {
                           width: smallFieldWidth,
                           child: TextFormField(
                             controller: email,
+                            key: _emailKey,
+                            autovalidateMode:
+                                AutovalidateMode.onUserInteraction,
+                            validator: (input) {
+                              input = email.text;
+                              final bool emailValid = RegExp(
+                                      r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+                                  .hasMatch(input);
+
+                              if (!emailValid || input.isEmpty) {
+                                return "Check Your Email";
+                              } else {
+                                return null;
+                              }
+                            },
                             decoration: buildFormFieldDeco(
                                 label: "Email Adress",
                                 hint: "Enter your email address"),
@@ -170,6 +194,7 @@ class Contact extends StatelessWidget {
                           width: checkPhone(context, size: 900) ? 350 : 950,
                           child: TextFormField(
                             controller: description,
+                            maxLength: 600,
                             maxLines: checkPhone(context, size: 900) ? 10 : 16,
                             decoration: buildFormFieldDeco(
                                 vPad: 30,
@@ -179,7 +204,6 @@ class Contact extends StatelessWidget {
                         ),
                       ],
                     ),
-                    const Gap(29),
                     CustomTextButton(
                       imageSrc: "assets/icons/letter.png",
                       press: () {
@@ -202,6 +226,7 @@ class Contact extends StatelessWidget {
                                 'Description: ${description.text}.',
                           }),
                         );
+
                         launchUrl(emailLaunchUri);
                       },
                       text: "Send",
@@ -227,6 +252,20 @@ class Contact extends StatelessWidget {
           borderRadius: BorderRadius.circular(40.0), // Set the border radius
           borderSide: const BorderSide(
             color: Color.fromARGB(255, 198, 224, 255),
+            width: 1.0, // Set the border width
+          ),
+        ),
+        focusedErrorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(40.0), // Set the border radius
+          borderSide: const BorderSide(
+            color: Color.fromARGB(255, 255, 198, 198),
+            width: 1.0, // Set the border width
+          ),
+        ),
+        errorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(40.0), // Set the border radius
+          borderSide: const BorderSide(
+            color: Color.fromARGB(255, 255, 198, 198),
             width: 1.0, // Set the border width
           ),
         ),

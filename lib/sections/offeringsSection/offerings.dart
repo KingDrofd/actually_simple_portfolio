@@ -29,13 +29,13 @@ class Offerings extends StatelessWidget {
                 children: [
                   Container(
                     width: 5,
-                    height: 30,
+                    height: checkPhone(context, size: 600) ? 15 : 30,
                     color: Colors.red,
                   ),
                   Container(
                     color: Colors.black,
                     width: 5,
-                    height: 60,
+                    height: checkPhone(context, size: 600) ? 40 : 60,
                   )
                 ],
               ),
@@ -45,15 +45,15 @@ class Offerings extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "My Strong Arenas",
+                    "My Strong Areas",
                     style: GoogleFonts.quicksand(
                         fontSize: checkPhone(context, size: 600) ? 15 : 20),
                   ),
                   Text(
-                    "Service Offerings",
+                    "Offerings",
                     style: GoogleFonts.quicksand(
                       fontWeight: FontWeight.bold,
-                      fontSize: checkPhone(context, size: 600) ? 45 : 50,
+                      fontSize: checkPhone(context, size: 600) ? 30 : 60,
                     ),
                   ),
                 ],

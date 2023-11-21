@@ -90,6 +90,9 @@ class _CustomProjectCardState extends State<CustomProjectCard>
               _animationController.reverse();
             }
           });
+          final string = widget.url;
+          final uri = Uri.parse(string);
+          launchUrl(uri);
         },
         child: Transform.translate(
           offset: Offset(0, animation.value),
@@ -144,7 +147,7 @@ class _CustomProjectCardState extends State<CustomProjectCard>
             widget.projectDescription,
             style: GoogleFonts.quicksand(
               fontWeight: FontWeight.w600,
-              fontSize: checkPhone(context, size: 1120) ? 20 : 27,
+              fontSize: checkPhone(context, size: 1120) ? 16 : 27,
             ),
           ),
           if (!checkPhone(context, size: 1120)) buildLinkOpen(),
@@ -177,6 +180,8 @@ class _CustomProjectCardState extends State<CustomProjectCard>
     return Container(
       decoration: BoxDecoration(
           image: DecorationImage(
+            filterQuality:
+                checkPhone(context) ? FilterQuality.none : FilterQuality.low,
             fit: BoxFit.cover,
             image: AssetImage(
               widget.image,

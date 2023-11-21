@@ -1,6 +1,7 @@
 import 'package:actually_simple_portfolio/sections/topSection/components/introduction.dart';
 import 'package:actually_simple_portfolio/sections/topSection/components/menu.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 import 'package:lottie/lottie.dart';
 import 'package:scroll_to_index/scroll_to_index.dart';
@@ -64,9 +65,11 @@ class _TopSectionState extends State<TopSection> {
   Widget _buildLogo() {
     return Align(
       alignment: Alignment.centerLeft,
-      child: LottieBuilder.asset(
-        "assets/logo.json",
+      child: SvgPicture.asset(
+        "assets/crown_alt.svg",
         width: 100,
+        colorFilter: ColorFilter.mode(
+            Color.fromARGB(255, 60, 60, 60), BlendMode.srcATop),
         height: 100,
       ),
     );

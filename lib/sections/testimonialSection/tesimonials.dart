@@ -55,13 +55,13 @@ class _TestimonialsState extends State<Testimonials> {
                 children: [
                   Container(
                     width: 5,
-                    height: 30,
+                    height: checkPhone(context, size: 600) ? 15 : 30,
                     color: Colors.blue,
                   ),
                   Container(
                     color: Colors.black,
                     width: 5,
-                    height: 60,
+                    height: checkPhone(context, size: 600) ? 40 : 60,
                   )
                 ],
               ),
@@ -79,14 +79,14 @@ class _TestimonialsState extends State<Testimonials> {
                     "Feedback Recieved",
                     style: GoogleFonts.quicksand(
                       fontWeight: FontWeight.bold,
-                      fontSize: checkPhone(context, size: 600) ? 30 : 50,
+                      fontSize: checkPhone(context, size: 600) ? 30 : 60,
                     ),
                   ),
                 ],
               ),
             ],
           ),
-          Gap(200),
+          Gap(150),
           Container(
             padding: EdgeInsets.only(left: 8, right: 8),
             height: 350,
@@ -97,10 +97,18 @@ class _TestimonialsState extends State<Testimonials> {
                   shrinkWrap: true,
                   clipBehavior: Clip.none,
                   scrollDirection: Axis.horizontal,
-                  children: [
-                    CustomTestimonialCard(),
+                  children: const [
+                    CustomTestimonialCard(
+                      text: "Un excellent service, francophone, "
+                          "rapide, à l'écoute et disponible. Nous vous recommandons "
+                          "Abdallah pour tous vos projets.",
+                      name: "Etienne, CEO Imprime À Rabais",
+                    ),
                     Gap(20),
                     CustomTestimonialCard(
+                      text:
+                          "Fast and efficient, Abdallah's talent for code and insights are unique.",
+                      name: "Alex, CEO Querias Consulting LLC",
                       color: Color.fromARGB(255, 254, 224, 224),
                       shadowColor: Color.fromARGB(255, 255, 183, 183),
                     ),

@@ -50,6 +50,10 @@ dependencies:
   download_assets: ^3.1.1
   audioplayers: ^5.2.1
   just_audio: ^0.9.36
+  flutter_native_splash: ^2.3.5
+  firebase_core: ^2.22.0
+  firebase_storage: ^11.5.1
+  flutter_email_sender: ^6.0.2
 
 dev_dependencies:
   flutter_test:

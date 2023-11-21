@@ -50,7 +50,7 @@ class CustomOutlinedButton extends StatelessWidget {
                     letterSpacing: -0.5,
                     fontWeight: FontWeight.bold,
                     color: Colors.black,
-                    fontSize: checkPhone(context, size: 900) ? 18 : 22,
+                    fontSize: checkPhone(context, size: 900) ? 16 : 22,
                   ),
             ),
           ],

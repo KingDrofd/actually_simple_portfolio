@@ -11,7 +11,7 @@ class Projects extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.only(left: 8, right: 8),
+      padding: const EdgeInsets.only(left: 8, right: 8),
       width: 1100,
       child: Column(
         children: [
@@ -23,13 +23,13 @@ class Projects extends StatelessWidget {
                 children: [
                   Container(
                     width: 5,
-                    height: 30,
+                    height: checkPhone(context, size: 600) ? 15 : 30,
                     color: Colors.amber,
                   ),
                   Container(
                     color: Colors.black,
                     width: 5,
-                    height: 60,
+                    height: checkPhone(context, size: 600) ? 40 : 60,
                   )
                 ],
               ),
@@ -47,14 +47,14 @@ class Projects extends StatelessWidget {
                     "Recent Works",
                     style: GoogleFonts.quicksand(
                       fontWeight: FontWeight.bold,
-                      fontSize: checkPhone(context, size: 600) ? 45 : 50,
+                      fontSize: checkPhone(context, size: 600) ? 30 : 60,
                     ),
                   ),
                 ],
               ),
             ],
           ),
-          Gap(50),
+          const Gap(50),
           Flex(
             mainAxisAlignment: MainAxisAlignment.start,
             direction: checkPhone(context) ? Axis.vertical : Axis.horizontal,
@@ -62,15 +62,21 @@ class Projects extends StatelessWidget {
               Expanded(
                   flex: checkPhone(context) ? 0 : 1,
                   child: CustomProjectCard(
+                    image: checkPhone(context, size: 900)
+                        ? "assets/untitled-min.png"
+                        : "assets/untitled.png",
                     projectFocus: "Unity Plugin",
                     projectDescription: "Custom Character Controller",
                     url: "https://github.com/KingDrofd/CCC",
                     shadowColor: Color.fromARGB(255, 255, 183, 183),
                   )),
-              Gap(30),
+              const Gap(30),
               Expanded(
                   flex: checkPhone(context) ? 0 : 1,
                   child: CustomProjectCard(
+                    image: checkPhone(context, size: 900)
+                        ? "assets/untitled-min.png"
+                        : "assets/untitled.png",
                     shadowColor: Color.fromARGB(255, 255, 183, 183),
                     projectFocus: "Unity Plugin",
                     projectDescription: "Custom Parallax Effect For 2D Games",
@@ -78,7 +84,7 @@ class Projects extends StatelessWidget {
                   )),
             ],
           ),
-          Gap(30),
+          const Gap(30),
           Flex(
             mainAxisAlignment: MainAxisAlignment.start,
             direction: checkPhone(context) ? Axis.vertical : Axis.horizontal,
@@ -86,22 +92,27 @@ class Projects extends StatelessWidget {
               Expanded(
                   flex: checkPhone(context) ? 0 : 1,
                   child: CustomProjectCard(
+                    image: checkPhone(context, size: 900)
+                        ? "assets/folder_alt-min.png"
+                        : "assets/folder_alt.png",
                     shadowColor: Color.fromARGB(255, 142, 255, 246),
                     projectFocus: "Website Portfolio",
                     projectDescription:
                         "Web Portfolio Inspired By The Game Nier Automata",
-                    image: "assets/folder.png",
-                    url: "https://kingdrofd.github.io/#/",
+                    url: "https://kingdrofd.github.io/nier-portfolio",
                   )),
-              Gap(30),
+              const Gap(30),
               Expanded(
                   flex: checkPhone(context) ? 0 : 1,
                   child: CustomProjectCard(
+                    image: checkPhone(context, size: 900)
+                        ? "assets/share to glass alt-min.png"
+                        : "assets/share to glass alt.png",
                     shadowColor: Color.fromARGB(255, 255, 218, 143),
                     projectFocus: "Flutter",
-                    image: "assets/share to glass alt.png",
                     projectDescription:
                         "Simple Local Sharing App Between Phone And Pc",
+                    url: "https://github.com/KingDrofd/open_with_desktop",
                   )),
             ],
           ),
